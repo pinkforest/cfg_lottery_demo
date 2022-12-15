@@ -8,6 +8,8 @@ Why we moved to `--cfg` flags instead of using `feature` for non-additive select
 * Ofcourse as with everything there are tradeoffs!
 * TBC: Blog entry coming up!
 
+## Setup
+
 $ cargo tree -i lib_with_cfgs
 ```
 lib_with_cfgs v0.1.0 (./crates/lib_with_cfgs)
@@ -17,6 +19,8 @@ lib_with_cfgs v0.1.0 (./crates/lib_with_cfgs)
     └── wheelie_bin v0.1.0 (./crates/wheelie_bin)
 ```
 
+## Naughty lib
+
 **Don't let the naughty lib get what it wants!**
 
 $ cat crates/naughty_lib/build.rs 
@@ -25,6 +29,8 @@ fn main() {
     println!("cargo:rustc-cfg=lib_selection=\"what_naughty_lib_wanted\"");
 }
 ```
+
+## Sensible defaults
 
 **Set some sensible defaults..**
 
@@ -42,7 +48,15 @@ $ env RUSTFLAGS cargo run
 Sensible defaults!
 ```
 
+## Various Ways
+
 env RUSTFLAGS='--cfg lib_selection="what_good_bin_wanted"' cargo run
 ```
 Good bin got what it wanted!
 ```
+
+Also [.cargo/config \[build\] section.](https://doc.rust-lang.org/cargo/reference/config.html#buildrustflags)
+
+## Real World
+
+- `curve25519_dalek_[bits|backend]`: https://github.com/dalek-cryptography/curve25519-dalek/
