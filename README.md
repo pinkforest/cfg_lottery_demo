@@ -26,11 +26,7 @@ lib_with_cfgs v0.1.0 (./crates/lib_with_cfgs)
 $ cat crates/naughty_lib/build.rs 
 ```rust
 fn main() {
-    #[cfg(all(
-        not(lib_selection = "what_good_bin_wanted"),
-        not(lib_selection = "what_naughty_lib_wanted")
-    ))]
-    println!("cargo:rustc-cfg=lib_selection=\"sensible_default\"");
+    println!("cargo:rustc-cfg=lib_selection=\"what_naughty_lib_wanted\"");
 }
 ```
 
@@ -41,7 +37,10 @@ fn main() {
 $ cat crates/lib_with_cfgs/build.rs 
 ```rust
 fn main() {
-    #[cfg(all(not(lib_selection = "what_good_bin_wanted"), not(lib_selection = "what_naughty_lib_wanted")))]
+    #[cfg(all(
+        not(lib_selection = "what_good_bin_wanted"),
+        not(lib_selection = "what_naughty_lib_wanted")
+    ))]
     println!("cargo:rustc-cfg=lib_selection=\"sensible_default\"");
 }
 ```
