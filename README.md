@@ -26,6 +26,17 @@ fn main() {
 }
 ```
 
+**Set some sensible defaults..**
+
+$ cat crates/lib_with_cfgs/build.rs 
+```rust
+fn main() {
+    #[cfg(not(lib_selection = "what_good_bin_wanted"))]
+    println!("cargo:rustc-cfg=lib_selection=\"sensible_default\"");
+}
+
+```
+
 $ env RUSTFLAGS cargo run
 ```
 Sensible defaults!
