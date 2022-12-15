@@ -13,8 +13,11 @@ pub fn selection() {
     println!("Sensible defaults!");
 }
 
-#[cfg(all(not(lib_selection = "what_good_bin_wanted"), not(lib_selection = "what_naughty_lib_wanted"), not(lib_selection = "sensible_default")))]
+#[cfg(all(
+    not(lib_selection = "what_good_bin_wanted"),
+    not(lib_selection = "what_naughty_lib_wanted"),
+    not(lib_selection = "sensible_default")
+))]
 pub fn selection() {
     println!("Nobody wanted anything");
 }
-
